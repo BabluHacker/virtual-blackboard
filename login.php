@@ -5,6 +5,56 @@
  * Date: 12/8/17
  * Time: 12:33 PM
  */
+
+session_start();
+if(isset($_SESSION['username'])){
+    header("location: index.php");
+}
+
+
+require ('db/db.php');
+
+if(isset($_POST['submit'])) {
+
+    $email = $_POST['email'];
+    $pass = $_POST['password'];
+    $desig = $_POST['designation'];
+
+    if ($desig == "teacher") {
+        $query = "SELECT * FROM `teacher` WHERE password='$pass' and email='$email'";
+        $result = mysqli_query($con, $query) or die(mysqli_error($con));
+        $rows = mysqli_num_rows($result);
+
+
+        if ($rows == 1) {
+            $info = mysqli_fetch_assoc($result);
+            $_SESSION['username'] = $email;
+            header("Location: index.php"); // Redirect user to index.php
+        } else {
+            echo "<script language=\"JavaScript\">\n";
+            echo "alert('Username or Password was incorrect!');\n";
+            echo "window.location='login.php'";
+            echo "</script>";
+        }
+    } else {
+        $query = "SELECT * FROM `student` WHERE password='$pass' and email='$email'";
+        $result = mysqli_query($con, $query) or die(mysqli_error($con));
+        $rows = mysqli_num_rows($result);
+
+
+        if ($rows == 1) {
+            $info = mysqli_fetch_assoc($result);
+            $_SESSION['username'] = $email;
+            header("Location: index.php"); // Redirect user to index.php
+        } else {
+            echo "<script language=\"JavaScript\">\n";
+            echo "alert('Username or Password was incorrect!');\n";
+            echo "window.location='login.php'";
+            echo "</script>";
+        }
+    }
+}
+
 ?>
 
 
@@ -20,43 +70,24 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="#">TSG</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarColor02">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
-            </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search">
-            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </div>
+
 </nav>
 
 
 <div class="btn-group offset-5" role="group" aria-label="Basic example">
-    <button type="button" class="btn btn-primary">Login</button>
+    <a type="button" href="#" class="btn btn-primary">Login</a>
 
-    <button type="button" class="btn btn-secondary">SignUp</button>
+    <a type="button" href="signup.php" class="btn btn-secondary">SignUp</a>
 </div>
 <div class="jumbotron">
     <div class="card" >
         <div class=" form-control btn-primary " style="float: left;">
-            <form action="myphp/login.php" method="post">
+            <form action="" method="post">
                 <fieldset class="col-sm-5 offset-3"  >
 
 
@@ -78,7 +109,7 @@
                         </select>
                     </div>
 
-                    <button type="submit" class="btn btn-secondary">Submit</button>
+                    <button name="submit" type="submit" class="btn btn-secondary">Submit</button>
                 </fieldset>
 
             </form>

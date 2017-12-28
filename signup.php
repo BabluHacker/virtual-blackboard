@@ -5,6 +5,8 @@
  * Date: 12/8/17
  * Time: 12:33 PM
  */
+
+
 ?>
 
 
@@ -20,45 +22,30 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="#">TSG</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarColor02">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
-            </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search">
-            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </div>
+
 </nav>
 
 
 <div class="btn-group offset-5" role="group" aria-label="Basic example">
-    <button type="button" class="btn btn-primary">Login</button>
+    <a type="button" href="login.php" class="btn btn-primary">Login</a>
 
-    <button type="button" class="btn btn-secondary" >SignUp</button>
+    <a type="button" href="#" class="btn btn-secondary" >SignUp</a>
 </div>
 <div class="jumbotron">
     <div class="card" >
         <div class=" form-control btn-secondary " style="float: left;">
             <form action="myphp/signup.php" method="post">
                 <fieldset class="col-sm-5 offset-3"  >
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" aria-describedby="Name" placeholder="Enter Name">
 
+                    </div>
 
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email address</label>
@@ -78,7 +65,7 @@
                         </select>
                     </div>
 
-                    <button type="submit" class="btn btn-secondary">Submit</button>
+                    <button name="submit" type="submit" class="btn btn-secondary">Submit</button>
                 </fieldset>
 
             </form>
